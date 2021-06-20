@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, {
-  cors: "http://localhost:3000,https://chatapp-b2a26.web.app/",
+  cors: "https://chatapp-b2a26.web.app/",
 });
 
 require("events").EventEmitter.defaultMaxListeners = 0;
