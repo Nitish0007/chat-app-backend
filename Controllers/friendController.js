@@ -61,10 +61,8 @@ const addfriend = async (req, res, next) => {
   const isAlreadyfriend = admin.friends.findIndex((friend) => {
     return friend.uid == friendID;
   });
-  if (
-    admin.friends.length == 0 ||
-    (isAlreadyfriend == -1 && admin.uid != friendID)
-  ) {
+  if (admin.friends.length == 0 || isAlreadyfriend < 0) {
+    // (isAlreadyfriend == -1 && admin.uid != friendID)
     admin.friends.push(newFriend);
     friend.friends.push(adminInstance);
     admin

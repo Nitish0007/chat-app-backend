@@ -6,8 +6,19 @@ const signup = async (req, res, next) => {
   const name = req.body.name;
   const username = req.body.userName;
   const password = req.body.password;
-  if (!name || !username || !password) {
-    res.status(404).json({ message: "fields can't be empty" });
+  const confirmPass = req.body.confirmPass;
+  if (!name || !username || !password || !confirmPass) {
+    res.status(404).json({
+      message: "fields can't be empty",
+      status: false,
+    });
+    return;
+  }
+  if (password != confirmPass) {
+    res.status(404).json({
+      message: "password not confirmed!!",
+      status: false,
+    });
     return;
   }
 
@@ -48,6 +59,7 @@ const signup = async (req, res, next) => {
       .catch(() =>
         res.status(502).json({
           message: "Something went wrong",
+          status: false,
         })
       );
   }
